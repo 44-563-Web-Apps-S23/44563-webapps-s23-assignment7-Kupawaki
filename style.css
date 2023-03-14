@@ -7,3 +7,20 @@ p {
 .important {
     text-align: center;
 }
+
+img {
+    width: 250px;
+    height: 250px;
+}
+
+.column {
+    float: left;
+    width: 16.66%;
+  }
+  
+  /* Clear floats after image containers */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }

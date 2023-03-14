@@ -21,17 +21,17 @@
     <p class="important">Click on the bushes to search for the mouse, beware the cat</p>
     <p id="bushes">Number of bushes checked is zero.</p> 
     <p id="penalty">Penalty is zero</p>
-    <p>Click for help</p>
-    <p id="help">Help report</p>
+    <button type="button" class="btn btn-primary" onclick="help()">Click for Help</button>
+    <p id="help" onclick="help()">Help Report</p>
 
     <div class="container">
       <div class="row gx-0">
-        <div class="col-sm"><img id="0" src="bush.jpg" class="img-fluid" onclick="check(0)"></div>
-        <div class="col-sm"><img id="1" src="bush.jpg" class="img-fluid" onclick="check(1)"></div>
-        <div class="col-sm"><img id="2" src="bush.jpg" class="img-fluid" onclick="check(2)"></div>
-        <div class="col-sm"><img id="3" src="bush.jpg" class="img-fluid" onclick="check(3)"></div>
-        <div class="col-sm"><img id="4" src="bush.jpg" class="img-fluid" onclick="check(4)"></div>
-        <div class="col-sm"><img id="5" src="bush.jpg" class="img-fluid" onclick="check(5)"></div>
+        <div class="col"><img id="0" src="bush.jpg" class="img-fluid" onclick="check(0)"></div>
+        <div class="col"><img id="1" src="bush.jpg" class="img-fluid" onclick="check(1)"></div>
+        <div class="col"><img id="2" src="bush.jpg" class="img-fluid" onclick="check(2)"></div>
+        <div class="col"><img id="3" src="bush.jpg" class="img-fluid" onclick="check(3)"></div>
+        <div class="col"><img id="4" src="bush.jpg" class="img-fluid" onclick="check(4)"></div>
+        <div class="col"><img id="5" src="bush.jpg" class="img-fluid" onclick="check(5)"></div>
       </div>
       <div class="row gx-0">
         <div class="col-sm"><img id="6" src="bush.jpg" class="img-fluid" onclick="check(6)"></div>
@@ -100,7 +100,48 @@
           lastCheck = position;
         }
       }
-    </script>
 
+      function help()
+      {
+        let rowRaw = (lastCheck/4);
+        let column = (lastCheck%6) + 1;
+        let row = determineRow(rowRaw);
+
+        let mouseRow = (determineRow(mouseLocation/4));
+        let mouseColumn = (mouseLocation%6) + 1;
+
+        let catRow = (determineRow(catLocation/4));
+        let catColumn = (catLocation%6) + 1;
+
+        function determineRow(rowRaw)
+        {
+          if(rowRaw == 0 || rowRaw == 0.25 || rowRaw == 0.5 || rowRaw == 0.75 || rowRaw == 1 || rowRaw == 1.25){
+            return 1;
+          }
+          else if(rowRaw == 1.5 || rowRaw == 1.75 || rowRaw == 2 || rowRaw == 2.25 || rowRaw == 2.5 || rowRaw == 2.75){
+            return 2;
+          }
+          else if(rowRaw == 3 || rowRaw == 3.25 || rowRaw == 3.5 || rowRaw == 3.75 || rowRaw == 4 || rowRaw == 4.25){
+            return 3;
+          }
+          else if(rowRaw == 4.5 || rowRaw == 4.75 || rowRaw == 5 || rowRaw == 5.25 || rowRaw == 5.5 || rowRaw == 5.75){
+            return 4;
+          }
+        }
+
+        if(Math.abs(row-catRow) <= 1 && Math.abs(column-catColumn) <= 1){
+          document.getElementById("help").innerHTML = "Meow"
+        }
+        else if(Math.abs(row-mouseRow) <= 1 && Math.abs(column-mouseColumn) <= 1){
+          document.getElementById("help").innerHTML = "Squeek"
+        }
+        else{
+          document.getElementById("help").innerHTML = "Sorry, no help available"
+        }
+
+        penalty = penalty + 2;
+        document.getElementById("penalty").innerHTML = "Penalty is " + penalty;
+      }
+    </script>
   </body>
 </html>
