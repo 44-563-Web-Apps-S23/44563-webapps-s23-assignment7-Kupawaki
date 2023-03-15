@@ -31,10 +31,11 @@
 		
 		<input id="input" type="text">
 
-		<p> Press the button to add a thing</p>
+		<p> Press the buttons to do many things</p>
 		<button onclick="makeNewDiv()">Add value</button>
 		<button onclick="get()">Get</button>
 		<button onclick="delay()">Delay</button>
+		<button onclick="promote()">Promote</button>
 
 
 		<div class="flex-container" id="target">
@@ -80,6 +81,18 @@
 				let removedItem = queueItems.shift()
 				let container = document.getElementById('target')
 				container.appendChild(removedItem)
+			}
+		}
+
+		function promote()
+		{
+			let queueItems = Array.from(document.getElementsByClassName("delayQ"))
+			if(queueItems.length > 1)
+			{
+				let removedItem = queueItems.splice(1)
+				console.log(removedItem)
+				let container = document.getElementById('target')
+				container.prepend(toString(removedItem));
 			}
 		}
 	</script>

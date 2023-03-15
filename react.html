@@ -22,22 +22,22 @@
   <script> 
   let reactTime = undefined;
   let endTime = undefined;
-
+  let startingValue = Math.floor(Math.random() * (10 - 2 + 1) + 2)
   function startTime()
   {
     endTime = Date.now();
-    for(let i=0; i<9; i++)
+    for(let i=0; i<(startingValue+1); i++)
     {
       setTimeout(function() {
         document.getElementById("counter").innerHTML = i;
-      }, ((8-i)*1000))
+      }, (startingValue-i)*1000)
     }
     setTimeout(function(){
       if(reactTime == undefined)
       {
         document.getElementById("target").innerHTML = "Too Slow";
       }
-    }, 8000)
+    }, startingValue)
   }
 
   function recordTime()
