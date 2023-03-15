@@ -89,10 +89,19 @@
 			let queueItems = Array.from(document.getElementsByClassName("delayQ"))
 			if(queueItems.length > 1)
 			{
-				let removedItem = queueItems.splice(1)
-				console.log(removedItem)
-				let container = document.getElementById('target')
-				container.prepend(toString(removedItem));
+				//We know we have at least 2 elements
+				let chosen = Math.floor(Math.random() * ((queueItems.length - 1) - 1 + 1) + 1)
+				console.log("Chose: " + chosen)
+
+				let removedItem = undefined
+				let container = undefined
+
+				for(let i = 0; i < chosen; i++)
+				{
+					removedItem = queueItems.shift()
+					container = document.getElementById('target')
+					container.appendChild(removedItem);
+				}
 			}
 		}
 	</script>
