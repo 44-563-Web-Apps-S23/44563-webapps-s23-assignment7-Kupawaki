@@ -33,6 +33,9 @@
 
 		<p> Press the button to add a thing</p>
 		<button onclick="makeNewDiv()">Add value</button>
+		<button onclick="get()">Get</button>
+		<button onclick="delay()">Delay</button>
+
 
 		<div class="flex-container" id="target">
 			<div class="delayQ">row item 1</div>   
@@ -56,6 +59,28 @@
 			/* add it to the container */
 			let container = document.getElementById('target')
 			container.appendChild(element)
+		}
+
+		function get()
+		{
+			let queueItems = document.getElementsByClassName("delayQ")
+			if(queueItems.length > 0)
+			{
+				queueItems[0].remove()
+			}
+		}
+
+		function delay()
+		{
+			//so this returns an HTMLCollection, not an array
+			//Thats why I use Array.from(). I want to use array methods.
+			let queueItems = Array.from(document.getElementsByClassName("delayQ"))
+			if(queueItems.length > 1)
+			{
+				let removedItem = queueItems.shift()
+				let container = document.getElementById('target')
+				container.appendChild(removedItem)
+			}
 		}
 	</script>
 </html>	
